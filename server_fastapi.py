@@ -59,7 +59,8 @@ async def send_image(file: UploadFile = File(...)):
         print("Entrou aqui no try")
         # Lê os bytes da imagem
         contents = await file.read()
-        show_resuts(contents)
+        out = show_resuts(contents) 
+        print(f"Conseguiu fazer toda a execução do serviço e retornou {out}")
         # out = show_resuts(contents)
         
         # # Converte os bytes para um objeto de imagem usando o Pillow
@@ -82,8 +83,8 @@ async def send_image(file: UploadFile = File(...)):
         # plt.close()
 
         # print("saíiii")
-        # resposta_json = {"mensagem": "Arquivo recebido com sucesso!", "status": "OK"}
-        # return resposta_json
+        resposta_json = {"mensagem": "Arquivo recebido com sucesso!", "status": "OK" , "output": f"{out}"}
+        return resposta_json
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
