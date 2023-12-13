@@ -4,4 +4,4 @@ Este é um projeto Web que fornece o serviço de interfaciar o uso de modelos de
 
 # Start :
 
-Para iniciar o projeto basta executar o arquivo fastapi_server.py
+Para iniciar o projeto basta executar o arquivo server_fastapi.py
