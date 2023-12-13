@@ -1,12 +1,14 @@
-// function handleFileSelect(event) {
-//     // Quando um arquivo é selecionado, envie o formulário para o servidor
-//     document.getElementById('uploadForm').submit();
-// }
+
 
 function handleFileSelect(event) {
+    
+    // return;
     // Obtém o arquivo selecionado
     const fileInput = event.target;
     const file = fileInput.files[0];
+
+    // alert("me notaaa");
+    // console.log("qualqquer coisa so pra testar");
 
     // Verifica se um arquivo foi selecionado
     if (file) {
@@ -25,38 +27,36 @@ function handleFileSelect(event) {
         const url = '/send_image';
 
         // Realiza a solicitação POST usando fetch
-        fetch(url, options)
         // fetch(url, options)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log('Resposta do servidor:', data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Erro:', error);
-        //     });
-        // event.preventDefault();
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+
+                console.log('Resposta do servidor:', data);
+
+                // Converte a imagem para Base64
+                const reader = new FileReader();
+                reader.onloadend = function () {
+                    // Cria uma lista contendo a imagem e outras informações
+                    const listaConteudo = [reader.result, data["output"]];
+
+                    // Armazena a lista no localStorage
+                    localStorage.setItem('Image_0', JSON.stringify(listaConteudo));
+
+                    // Redireciona para a nova tela
+                    window.location.href = data["nova_url"];
+                };
+
+
+                reader.readAsDataURL(file);
+
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        event.preventDefault();
     }
 }
 
 
-// function handleFileSelect(event) {
-//     const fileInput = event.target;
-//     const file = fileInput.files[0];
 
-//     if (file) {
-//         const formData = new FormData();
-//         // formData.append('arquivo', file);
-//         formData.append('file', file);
-
-        
-
-//         // Realiza a solicitação POST usando Axios
-//         axios.post('/send_image', formData)
-//             .then(response => {
-//                 console.log('Resposta do servidor:', response.data);
-//             })
-//             .catch(error => {
-//                 console.error('Erro na solicitação:', error);
-//             });
-//     }
-// }

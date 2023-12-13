@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Maculo Jumper</title>
+    <title>Med Classifier</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/classifier.css"/>
+    <script src="classifier.js"></script>
 
+    <!-- <script>load_page_scene()</script> -->
     <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
 
@@ -19,30 +21,66 @@
         <!-- <img src="icons/white__stethoscope_809957 (1).png" alt="Logo" class="Logo"> -->
         <img src="icons/white__healthcare_3403518 (1).png" alt="Logo" class="Logo"> 
     </div>
+
+    <div class="img_display" >
+
+        <div  id="imagem-container">
+    
+            
+
+    </div>
+    <!-- <script>
+        // load_main_frame()
+        exibirNovaImagem()
+    </script> -->
+
+    <style>
+        /* Estilos para redimensionar a imagem */
+        #imagem-container {
+            max-width: 70%;  /* A largura máxima é 100% do contêiner pai */
+            max-height: 72vh;  /* A altura máxima é 100% da altura da visualização */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* top : -50%;
+            position: relative; */
+            
+        }
+
+        #imagem-container img {
+            max-width: 100%;  /* A largura máxima da imagem é 100% do contêiner */
+            max-height: 100%;  /* A altura máxima da imagem é 100% do contêiner */
+            object-fit: contain;  /* A imagem será redimensionada para caber mantendo as proporções */
+            /* top : -50%; */
+            /* position: relative; */
+        }
+
+        .imagem-container{
+            top : 50px;
+            position: absolute;
+        }
+    </style>
+
+    </div>
     <div class= "board" > 
         
         <h2 class = "formats_text"> Detected </h2> 
         <div class= "board-screen" >
             
-            <!-- <button type="submit" class="send_btn">Send Image  -->
+           
 
-                <!-- <form action="/url_de_destino_do_formulario" method="post" enctype="multipart/form-data">
-                    <label for="arquivo" class="custom-btn">Enviar Imagem</label>
-                    <input type="file" id="arquivo" name="arquivo" class="file-input">
-                    <input type="submit" value="Enviar" style="display: none;">
-                  </form> -->
-
-            <!-- </button> -->
+            <label id="nova-label"></label>
             <div class="detected_classes"></div>
 
 
-            <form action="/url_de_destino_do_formulario" method="post" enctype="multipart/form-data">
-                <!-- Adicione um botão personalizado que se parece com o botão de envio -->
-                <button type="button" class="send_btn" onclick="document.getElementById('arquivo').click();">Send Image</button>
-                <input type="file" id="arquivo" name="arquivo" class="file-input">
-                <input type="submit" value="Enviar" style="display: none;">
-              </form>
-
+            
+            
+            <form id="uploadForm" action="/send_image" method="post" enctype="multipart/form-data">
+                <!-- <form id="uploadForm" action="/send_image" method="get" enctype="multipart/form-data"> -->
+                    <!-- Adicione um botão personalizado que se parece com o botão de envio -->
+                    <button type="button" class="send_btn" onclick="document.getElementById('arquivo').click();">Send Image</button>
+                    <input type="file" id="arquivo" name="arquivo" class="file-input" onchange="handleFileSelect(event)">  
+            </form>
             
         </div>
         

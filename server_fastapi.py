@@ -83,7 +83,7 @@ async def send_image(file: UploadFile = File(...)):
         # plt.close()
 
         # print("saíiii")
-        resposta_json = {"mensagem": "Arquivo recebido com sucesso!", "status": "OK" , "output": f"{out}"}
+        resposta_json = {"nova_url": "classifier.html", "status": "OK" , "output": f"{out}"}
         return resposta_json
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -86,7 +86,7 @@ def show_resuts(contents):
     
 
     out = image_model.predict(image)
-    print(f"\n\n\nResposta do modelo = { out }\n\n")
+    # print(f"\n\n\nResposta do modelo = { out }\n\n")
     # print(io.BytesIO(contents))
     # print(np.array(image).shape)
 
